@@ -1,0 +1,70 @@
+<!-- register.component.html -->
+<div class="logo-container">
+  <img 
+    class="logo" 
+    src="/odysseylogo.png"  
+    alt="My Logo" 
+  />
+</div>
+
+<div class="auth-page">
+  <div class="auth-content">
+    <h2>Create your account</h2>
+
+    <form (ngSubmit)="onRegister()" #regForm="ngForm" class="auth-form">
+      <!-- Full Name -->
+      <div class="form-group">
+        <label for="name">Full Name</label>
+        <input
+          id="name"
+          name="name"
+          type="text"
+          [(ngModel)]="name"
+          required
+          placeholder="Enter your full name"
+        />
+      </div>
+
+      <!-- Email -->
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          id="email"
+          name="email"
+          type="email"
+          [(ngModel)]="email"
+          required
+          placeholder="Enter your email"
+        />
+      </div>
+
+      <!-- Password -->
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          id="password"
+          name="password"
+          type="password"
+          [(ngModel)]="password"
+          required
+          placeholder="••••••"
+        />
+      </div>
+
+      <!-- Sign up Button -->
+      <button 
+        type="submit"
+        [disabled]="!regForm.valid"
+        class="auth-submit"
+      >
+        Sign up
+      </button>
+
+      <!-- Extra link -->
+      <p class="auth-extra">
+        Already have an account? 
+        <a routerLink="/login">Sign in</a>
+      </p>
+    </form>
+  </div>
+</div>

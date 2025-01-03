@@ -1,0 +1,62 @@
+<!-- login.component.html -->
+<div class="logo-container">
+  <img 
+    class="logo" 
+    src="/odysseylogo.png" 
+    alt="Odyssey" 
+  />
+</div>
+
+<div class="auth-page">
+  <div class="auth-content">
+    <h2>Sign in to your account</h2>
+
+    <form (ngSubmit)="onLogin()" #loginForm="ngForm" class="auth-form">
+      <!-- Email Field -->
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          id="email"
+          name="email"
+          type="email"
+          [(ngModel)]="email"
+          required
+          placeholder="Enter your email"
+        />
+      </div>
+
+      <!-- Password Field -->
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          id="password"
+          name="password"
+          type="password"
+          [(ngModel)]="password"
+          required
+          placeholder="••••••"
+        />
+      </div>
+
+      <!-- Submit Button -->
+      <button 
+        type="submit"
+        [disabled]="!loginForm.valid"
+        class="auth-submit"
+      >
+        Sign in
+      </button>
+
+      <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+
+      <!-- Extra Links -->
+      <p class="auth-extra">
+        Don't have? 
+        <a routerLink="/register" routerLinkActive="active">
+          Create an account
+        </a>
+      </p>
+    </form>
+  </div>
+</div>

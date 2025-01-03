@@ -1,1 +1,54 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+
+
+$color-bg: #0e0d0d;        /* Preto mais escuro */
+$color-orange: #ff9800;
+$color-text: #ffffff;
+$font-primary: 'Poppins', sans-serif;
+
+.custom-snackbar {
+  .mat-mdc-button.mat-mdc-snack-bar-action {
+    color: #ff9800 !important; 
+    font-weight: bold;
+  }
+}
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: $color-bg;
+  color: $color-text;
+  position: relative;
+}
+
+html, body { height: 100%; }
+
+/* Adiciona o efeito granulado */
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.6" numOctaves="3" stitchTiles="stitch"></feTurbulence></filter><rect width="100%" height="100%" filter="url(%23grain)" opacity="0.1"></rect></svg>');
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Adiciona uma leve sombra para criar profundidade */
+body::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.02);
+  z-index: -1;
+  pointer-events: none;
+  box-shadow: 0 0 4px 0 rgba(255, 255, 255, 0.05) inset, 
+              0 0 8px 4px rgba(0, 0, 0, 0.2) inset;
+}
+
