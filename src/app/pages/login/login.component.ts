@@ -23,8 +23,10 @@ export class LoginComponent {
   onLogin() {
     this.auth.login(this.email, this.password).subscribe({
       next: (res) => {
+        const token = res.token;
         localStorage.setItem('accessToken', res.accessToken);
         localStorage.setItem('refreshToken', res.refreshToken);
+        console.log("Token armazenado:", localStorage.getItem('accessToken'));
         this.router.navigate(['/home']);
       },
       error: (err) => {

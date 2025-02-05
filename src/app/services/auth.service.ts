@@ -23,4 +23,8 @@ export class AuthService {
     const params = new HttpParams().set('refreshToken', refreshToken);
     return this.http.post(`${this.baseUrl}/refresh-token`, {}, { params });
   }
+
+  verifyToken(token: string): Observable<boolean> {
+    return this.http.post<boolean>(`${this.baseUrl}/verify-token`, { token });
+  }
 }

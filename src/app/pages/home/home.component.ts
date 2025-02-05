@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   selector: 'app-home',
-  template: `<h1>Bem-vindo ao Roadmap!</h1>`,
+  template: `<h1>Welcome to roadmap!</h1>`,
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {}
