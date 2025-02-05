@@ -1,14 +1,13 @@
 <!-- login.component.html -->
-<div class="logo-container">
-  <img 
-    class="logo" 
-    src="/odysseylogo.png" 
-    alt="Odyssey" 
-  />
-</div>
-
 <div class="auth-page">
   <div class="auth-content">
+    <div class="logo-container">
+      <img 
+        class="logo" 
+        src="/odysseylogo.png"  
+        alt="My Logo" 
+      />
+    </div>
     <h2>Sign in to your account</h2>
 
     <form (ngSubmit)="onLogin()" #loginForm="ngForm" class="auth-form">

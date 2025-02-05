@@ -1,14 +1,13 @@
 <!-- register.component.html -->
-<div class="logo-container">
-  <img 
-    class="logo" 
-    src="/odysseylogo.png"  
-    alt="My Logo" 
-  />
-</div>
-
 <div class="auth-page">
   <div class="auth-content">
+    <div class="logo-container">
+      <img 
+        class="logo" 
+        src="/odysseylogo.png"  
+        alt="My Logo" 
+      />
+    </div>
     <h2>Create your account</h2>
 
     <form (ngSubmit)="onRegister()" #regForm="ngForm" class="auth-form">

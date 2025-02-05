@@ -1,16 +1,19 @@
-// src/app/app.config.ts
 import { ApplicationConfig } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { appRoutes } from './app.routes';
-import { provideHttpClient } from '@angular/common/http';
-//import { provideClientHydration } from '@angular/platform-browser';
-//import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { authInterceptor } from './interceptor/auth.interceptor'; // Importe a função
+import { AuthService } from './services/auth.service';
+import { Router } from '@angular/router';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(appRoutes),
-    provideHttpClient()
-    //provideClientHydration(), provideAnimationsAsync('noop'),
-    // provideHttpClient() - se não estiver presente, inclua também
-  ],
+    provideHttpClient(
+      withInterceptors([authInterceptor]) // Use a função aqui
+    ),
+
+    { provide: AuthService, useClass: AuthService },
+    { provide: Router, useClass: Router },
+  ]
 };

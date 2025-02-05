@@ -27,8 +27,16 @@ export class RegisterComponent {
   onRegister() {
     this.authService.register(this.name, this.email, this.password).subscribe({
       next: (res) => {
-        alert('User created successfully!');
-        this.router.navigate(['/login']);
+        this.snackBar.open('User created successfully!', 'Fechar', {
+          duration: 3000, 
+          horizontalPosition: 'center',
+          verticalPosition: 'top',
+          panelClass: ['success-snackbar']
+        });
+
+        setTimeout(() => {
+          this.router.navigate(['/login']);
+        }, 3000);
       },
       error: (err) => {
         let errorMessage = 'Ocorreu um erro inesperado.';

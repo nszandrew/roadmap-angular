@@ -10,14 +10,20 @@ html, body {
   
   /* Logo no canto superior esquerdo */
   .logo-container {
-    position: absolute;
-    top: 20px;
-    left: 20px;
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente */
+    margin-bottom: 2rem; /* Espaçamento abaixo da logo */
+  }
   
-    .logo {
-      width: 80px;
-      height: auto;
-    }
+  .logo {
+    width: 200px; /* Tamanho solicitado */
+    height: auto;
+    transition: transform 0.3s ease; /* Efeito hover opcional */
+  }
+  
+  /* Efeito de hover suave (opcional) */
+  .logo:hover {
+    transform: scale(1.05);
   }
   
   /* Container que centraliza tudo vertical/horizontal */
