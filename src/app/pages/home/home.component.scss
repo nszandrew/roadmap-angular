@@ -1,0 +1,297 @@
+/* Ensure this import is at the very top of the file */
+@use 'sass:color';
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+
+$color-bg: #0e0d0d;                 // Dark base
+$color-orange: #ff9800;            // Accent
+$color-text: #ffffff;              // Text color
+$font-primary: 'Poppins', sans-serif;
+
+$card-bg: color.adjust($color-bg, $lightness: 10%);
+$popup-bg: color.adjust($color-bg, $lightness: +5%);
+$chat-header-bg: #1f1e1e;          // Approx: darker version of $card-bg by ~5%
+$color-orange-border: #e28500;     // Approx: darker version of $color-orange by ~15%
+
+.home-container {
+  background-color: $color-bg;
+  color: $color-text;
+  font-family: $font-primary;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* === POPUP OVERLAY === */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.popup-content {
+  position: relative;
+  background: $popup-bg;
+  border: 1px solid $color-orange;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 900px;
+  padding: 20px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5);
+  text-align: center;
+
+  h2 {
+    margin: 0 0 20px;
+  }
+}
+
+/* Close button in top-right corner */
+.close-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: transparent;
+  border: none;
+  color: $color-text;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+/* === PLANS SECTION === */
+.plans {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.plan-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; 
+  background: $card-bg;
+  border: 1px solid $color-orange;
+  border-radius: 8px;
+  width: 250px; /* each card has a fixed width */
+  padding: 15px;
+  position: relative; /* for the optional ribbon */
+  transition: transform 0.15s ease;
+
+  &:hover {
+    transform: translateY(-3px);
+  }
+
+  h3 {
+    margin-top: 0;
+    font-size: 1.2rem;
+    margin-bottom: 6px;
+  }
+
+  .price {
+    font-weight: 600;
+    margin-bottom: 10px;
+    font-size: 1rem;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 15px;
+
+    li {
+      margin-bottom: 6px;
+      font-size: 0.9rem;
+      line-height: 1.3;
+    }
+  }
+
+  /* 
+    Because we used justify-content: space-between,
+    the button automatically sits at the bottom.
+    Just center it horizontally with align-self. 
+  */
+  button {
+    align-self: center; 
+    font-weight: 600; 
+    margin-top: 10px; // a bit of spacing from the content above
+  }
+
+  /* Override Material's default color with your orange */
+  button.mat-raised-button {
+    background-color: $color-orange !important;
+    color: $color-bg !important; // black background => light text
+    border-radius: 4px;
+
+    &:hover {
+      background-color: color.adjust($color-orange, $lightness: -5%) !important;
+    }
+  }
+
+  /* ===== Featured (most popular) highlight ===== */
+  &.featured {
+    border: 2px solid $color-orange;
+    box-shadow: 0 0 10px rgba($color-orange, 0.5);
+    z-index: 2;
+
+    .price {
+      color: $color-orange;
+      font-size: 1.1rem;
+    }
+    h3 {
+      color: $color-orange;
+      text-transform: uppercase;
+    }
+  }
+
+  /* ===== Optional 'Most Popular' ribbon ===== */
+  .ribbon {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: $color-orange;
+    color: $color-bg;
+    padding: 5px 10px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    transform: rotate(10deg);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+  }
+
+  /* ===== Plan-Specific Classes ===== */
+  /* If it's the 'Free' plan */
+  &.plan-free {
+    h3 {
+      color: #4caf50; // green example
+    }
+    .price {
+      color: #66bb6a;
+    }
+  }
+
+  /* If it's the 'Premium' plan */
+  &.plan-premium {
+    h3 {
+      color: #c51162;  // pinkish-red
+    }
+    .price {
+      color: #f06292;  // lighter pink
+    }
+  }
+}
+
+
+/* === CHAT SECTION === */
+.chat-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 350px;
+  max-height: 500px;
+  background: $card-bg;
+  border: 2px solid $color-orange;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  z-index: 1000;
+}
+
+.chat-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: $chat-header-bg;
+  padding: 10px;
+  border-bottom: 1px solid $color-orange;
+
+  .chat-icon {
+    margin-right: 8px;
+  }
+
+  .close-chat-btn {
+    color: $color-text;
+  }
+}
+
+.chat-messages {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+}
+
+.chat-message {
+  background: rgba($color-text, 0.05);
+  padding: 6px 10px;
+  border-radius: 4px;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+}
+
+.chat-input {
+  display: flex;
+  align-items: center;
+  border-top: 1px solid $color-orange;
+  padding: 8px 10px;
+
+  input {
+    flex: 1;
+    border: 1px solid $color-orange-border;
+    border-radius: 4px;
+    padding: 6px;
+    background: transparent;
+    color: $color-text;
+    font-family: $font-primary;
+    margin-right: 8px;
+
+    &:focus {
+      outline: 1px solid $color-orange;
+    }
+
+    &::placeholder {
+      color: rgba($color-text, 0.5);
+    }
+  }
+
+  button {
+    color: $color-orange;
+
+    &:hover {
+      background-color: rgba($color-orange, 0.1);
+    }
+  }
+}
+.select-plan-btn {
+  background-color: $color-orange !important;
+  color: $color-bg !important; // or #fff if you prefer
+  border-radius: 4px; // optional
+  &:hover {
+    background-color: color.adjust($color-orange, $lightness: -5%) !important;
+  }
+}
+
+
+/* === RESPONSIVE TWEAKS === */
+@media (max-width: 768px) {
+  .popup-content {
+    max-width: 95%;
+  }
+
+  .plans {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .plan-card {
+    width: 80%;
+    margin-bottom: 10px;
+  }
+}

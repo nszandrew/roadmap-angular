@@ -1,1 +1,55 @@
-<p>home works!</p>
+<div class="home-container">
+  <!-- Plan Popup Overlay -->
+  <div class="popup-overlay" *ngIf="showPlanPopup">
+    <div class="popup-content">
+      <!-- Close Button -->
+      <button class="close-btn" (click)="closePopup()">X</button>
+      <h2>One tool for you and your future</h2>
+      <div class="plans">
+        <div
+        class="plan-card"
+        *ngFor="let plan of plans"
+        [class.featured]="plan.name === 'Basic'"
+        [ngClass]="{
+          'plan-free': plan.name === 'Free',
+          'plan-basic': plan.name === 'Basic',
+          'plan-premium': plan.name === 'Premium'
+        }"
+        >
+        <h3>{{ plan.name }}</h3>
+        <p class="price">{{ plan.price }}</p>
+        <ul>
+          <li *ngFor="let feature of plan.features">{{ feature }}</li>
+        </ul>
+        <button mat-raised-button class="select-plan-btn">SELECT</button>
+        <!-- Optional: Show a 'Most Popular' ribbon only on BASIC -->
+        <div *ngIf="plan.name === 'Basic'" class="ribbon">Most Popular</div>
+      </div>
+    </div>
+
+  <!-- Chat Section -->
+  <div class="chat-container">
+    <div class="chat-header">
+      <mat-icon class="chat-icon">chat</mat-icon>
+      Support
+      <button mat-icon-button color="warn" class="close-chat-btn">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+    <div class="chat-messages">
+      <div class="chat-message" *ngFor="let msg of chatMessages">
+        {{ msg }}
+      </div>
+    </div>
+    <div class="chat-input">
+      <input
+        type="text"
+        [(ngModel)]="chatInput"
+        placeholder="Send a message..."
+      />
+      <button mat-icon-button color="accent" (click)="sendMessage()">
+        <mat-icon>send</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>
