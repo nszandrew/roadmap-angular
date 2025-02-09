@@ -24,6 +24,10 @@ export class AuthService {
     return this.http.post(`${this.baseUrl}/refresh-token`, {}, { params });
   }
 
+  getUserInfo(): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/user/info`);
+  }
+
   verifyToken(token: string): Observable<boolean> {
     return this.http.post<boolean>(`${this.baseUrl}/verify-token`, { token });
   }
